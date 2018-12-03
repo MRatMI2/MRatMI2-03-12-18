@@ -1,0 +1,109 @@
+---
+title: "DataTable "
+author: "Michał Burdukiewicz"
+date: "3 grudnia 2018"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+```
+
+## Tabela
+
+```{r}
+ToothGrowth
+```
+
+## Tabela
+
+```{r}
+knitr::kable(ToothGrowth)
+```
+
+## DataTable
+
+Nie mylić z data.table
+
+```{r}
+DT::datatable(ToothGrowth, 
+              options = list(pageLength = 5))
+```
+
+## dom
+
+Order in the document (DOM)
+
+```{r}
+DT::datatable(ToothGrowth, 
+              options = list(pageLength = 5, dom = "rtip"))
+```
+
+## dom
+
+Information summary
+
+```{r}
+DT::datatable(ToothGrowth, 
+              options = list(pageLength = 5, dom = "i"))
+```
+
+## dom
+
+Information summary
+
+```{r}
+DT::datatable(ToothGrowth, 
+              options = list(pageLength = 5, dom = "p"))
+```
+
+## dom
+
+Elementy można łączyć.
+
+```{r}
+DT::datatable(ToothGrowth, 
+              options = list(pageLength = 5, dom = "ip"))
+```
+
+
+## dom
+
+Elementy można łączyć (table-information-pagination).
+
+```{r}
+DT::datatable(ToothGrowth, 
+              options = list(pageLength = 5, dom = "tip"))
+```
+
+## Extensions
+
+```{r}
+DT::datatable(ToothGrowth, extensions = "Buttons",
+              options = list(pageLength = 5, dom = "Btip"))
+```
+
+## Extensions
+
+```{r}
+DT::datatable(ToothGrowth, extensions = "Buttons",
+              options = list(pageLength = 5, dom = "Btip",
+                             buttons = c("excel", "print")))
+```
+
+## Filtrowanie
+
+```{r}
+DT::datatable(ToothGrowth, filter = "top",
+              options = list(pageLength = 5))
+```
+
+## Formatowanie
+
+```{r}
+library(DT)
+datatable(ToothGrowth) %>% formatStyle(
+  "supp", backgroundColor = styleEqual(c("VC", "OJ"), 
+                                       c("yellow", "pink")))
+```
