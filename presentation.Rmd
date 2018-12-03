@@ -107,3 +107,13 @@ datatable(ToothGrowth) %>% formatStyle(
   "supp", backgroundColor = styleEqual(c("VC", "OJ"), 
                                        c("yellow", "pink")))
 ```
+
+## Wybieranie wierszy
+
+dtx <- renderDataTable(datatable(..., server = TRUE)) umożliwia wykorzystywanie input[["dtx_rows_selected"]]
+
+## Alternatywa
+
+https://github.com/jrowen/rhandsontable
+
+
