@@ -1,12 +1,14 @@
 library(shiny)
 library(dplyr)
 library(DT)
+library(ggplot2)
 
 dat <- read.csv2("example1.csv")
 
 ui <- fluidPage(
   titlePanel("Just app"),
-  DT::dataTableOutput("results_table")
+  DT::dataTableOutput("results_table"),
+  plotOutput("chart")
 )
 
 server <- function(input, output) {
@@ -30,6 +32,13 @@ server <- function(input, output) {
   
   output[["results_table"]] <- DT::renderDataTable({
     dt_r()
+  })
+  
+  output[["chart"]] <- renderPlot({
+    input[["results_table_cell_edit"]]
+    
+    ggplot(dat, aes(x = Var1)) +
+      geom_bar()
   })
   
 }
